@@ -107,7 +107,7 @@ async def ask_health_question(query: HealthQuery):
         ).with_model("openai", "gpt-4o")
         
         # Create user message
-        user_message = UserMessage(text=query.question)
+        user_message = UserMessage(text=query.question.strip())
         
         # Get AI response
         ai_response = await chat.send_message(user_message)
