@@ -92,6 +92,10 @@ async def root():
 async def ask_health_question(query: HealthQuery):
     """Process health-related questions using AI"""
     try:
+        # Validate question is not empty
+        if not query.question or not query.question.strip():
+            raise HTTPException(status_code=422, detail="Question cannot be empty")
+        
         # Create unique session ID
         session_id = f"health_chat_{uuid.uuid4()}"
         
